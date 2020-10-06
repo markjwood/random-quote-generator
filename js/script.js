@@ -12,8 +12,8 @@ project 1 - A Random Quote Generator
 ***/
 const quotes = [
   {
-    quote: 'It is easy to be brave from a safe distance.',
-    source: 'Aesop',
+    quote: "It is easy to be brave from a safe distance.",
+    source: "Aesop",
   },
   {
     quote: "If it’s true that our species is alone in the universe, then I’d have to say the universe aimed rather low and settled for very little.",
@@ -62,7 +62,7 @@ const quotes = [
   {
     quote: "Half the lies they tell about me aren't true.",
     source: "Yogi Berra"
-  }
+  },
   {
     quote: "If people don't want to come to the ballpark, how are you going to stop them?",
     source: "Yogi Berra"
@@ -98,12 +98,31 @@ const quotes = [
  * `getRandomQuote` function
 ***/
 
-
+function getRandomQuote(array) {
+  let number = Math.floor(Math.random() * (array.length) );
+  return array[number];
+}
 
 /***
  * `printQuote` function
 ***/
+function printQuote() {
+  let randomQuote = getRandomQuote(quotes);
+  console.log( randomQuote ); //testing
+  let quoteCite = randomQuote.citation;
+  let quoteYear = randomQuote.year;
+  let quoteSource = randomQuote.source;
 
+  if ( quoteCite ) { 
+    quoteSource += `<span class="citation">${quoteCite}</span>`;
+  }
+  if ( quoteYear ) {
+    quoteSource += `<span class="year">${quoteYear}</span>`;
+  } 
+
+  document.querySelector( '.quote' ).innerHTML = randomQuote.quote;
+  document.querySelector( '.source' ).innerHTML = quoteSource;
+}
 
 
 /***
