@@ -108,20 +108,19 @@ function getRandomQuote(array) {
 ***/
 function printQuote() {
   let randomQuote = getRandomQuote(quotes);
-  console.log( randomQuote ); //testing
-  let quoteCite = randomQuote.citation;
-  let quoteYear = randomQuote.year;
-  let quoteSource = randomQuote.source;
 
-  if ( quoteCite ) { 
-    quoteSource += `<span class="citation">${quoteCite}</span>`;
+  let htmlQuote = `<p class="quote">${randomQuote.quote}</p>`;
+  htmlQuote += `<p class="source">${randomQuote.source}`;
+
+  if ( randomQuote.citation ) { // Add citation if it exists
+    htmlQuote += `<span class="citation">${randomQuote.citation}</span>`;
   }
-  if ( quoteYear ) {
-    quoteSource += `<span class="year">${quoteYear}</span>`;
-  } 
+  if ( randomQuote.year ) { // Add year if it exists
+    htmlQuote += `<span class="year">${randomQuote.year}</span>`;
+  }
+  htmlQuote += '</p>'; // close paragraph
 
-  document.querySelector( '.quote' ).innerHTML = randomQuote.quote;
-  document.querySelector( '.source' ).innerHTML = quoteSource;
+  document.querySelector( `.quote-box` ).innerHTML = htmlQuote;
 }
 
 
