@@ -89,7 +89,7 @@ h1 {
   position: absolute;
 }
 
-.source {
+.source, .tags {
   font-size: 1rem;
   letter-spacing: 0.05em;
   line-height: 1.1;
@@ -113,6 +113,10 @@ h1 {
 .year:before {
   content: ", ";
   font-style: normal;
+}
+
+.tags {
+  margin-right: 5em;
 }
 
 @media (min-width: 768px) {
