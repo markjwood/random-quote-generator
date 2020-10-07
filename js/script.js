@@ -19,7 +19,8 @@ const quotes = [
     quote: "If it’s true that our species is alone in the universe, then I’d have to say the universe aimed rather low and settled for very little.",
     source: "George Carlin",
     citation: "Napalm & Silly Putty",
-    year: 2001
+    year: 2001,
+    tags: `#humor`
   },
   {
     quote: "There is more stupidity than hydrogen in the universe, and it has a longer shelf life.",
@@ -29,7 +30,8 @@ const quotes = [
     quote: "Life is what happens to you when you're busy making other plans.",
     source: "John Lennon",
     citation: "Beautiful Boy (Darling Boy)",
-    year: 1980
+    year: 1980,
+    tags: '#lyrics #inspirational'
   },
   {
     quote: "My powers are ordinary. Only my application brings me success.",
@@ -49,11 +51,13 @@ const quotes = [
   },
   {
     quote: "If it's your job to eat a frog, it's best to do it first thing in the morning. And If it's your job to eat two frogs, it's best to eat the biggest one first.",
-    source: "Mark Twain"
+    source: "Mark Twain",
+    tags: `#inspirational`
   },
   {
     quote: "He is a wise man who does not grieve for the things he has not, but rejoices for those which he has.",
-    source: "Epictetus"
+    source: "Epictetus",
+    tags: `#stoicism`
   },
   {
     quote: "If you don't know where you are going, you might wind up someplace else.",
@@ -69,7 +73,8 @@ const quotes = [
   },
   {
     quote: "Weather forecast for tonight: dark.",
-    source: "George Carlin"
+    source: "George Carlin",
+    tags: `#humor`
   },
   {
     quote: "I get a kick out of being an outsider constantly. It allows me to be creative.",
@@ -93,13 +98,35 @@ const quotes = [
   }
 ];
 
+/***
+ * `randomNumber` function
+ * Returns a random integer between two numbers
+ * 
+ * @param {integer} min - The minimum number.
+ * @param {integer} max - The maximum number.
+ */
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+/***
+ * `randomColor` function
+ * Generates a random rgb color code.
+ */
+function randomColor() {
+  let r = randomNumber(0, 255);
+  let g = randomNumber(0, 255);
+  let b = randomNumber(0, 255);
+  return `rgb(${r}, ${g}, ${b})`;
+}
 
 /***
  * `getRandomQuote` function
+ * Chooses a random quote object from an array.
 ***/
 
 function getRandomQuote(array) {
-  let number = Math.floor(Math.random() * (array.length) );
+  let number = randomNumber(0, array.length);
   return array[number];
 }
 
@@ -118,10 +145,22 @@ function printQuote() {
   if ( randomQuote.year ) { // Add year if it exists
     htmlQuote += `<span class="year">${randomQuote.year}</span>`;
   }
+  if ( randomQuote.tags ) { // Add tags if they exist
+    htmlQuote += `
+      </p>
+      <p class="tags"><strong>Tags: </strong>${randomQuote.tags}
+    `;
+  }
   htmlQuote += '</p>'; // close paragraph
 
-  document.querySelector( `.quote-box` ).innerHTML = htmlQuote;
+  document.getElementById( 'quote-box' ).innerHTML = htmlQuote;
+
+  // Change background to a random color
+  document.querySelector('body').style.backgroundColor = randomColor();
 }
+
+// Refresh quote every 20 seconds
+let interval = setInterval(printQuote, 20000); 
 
 
 /***
