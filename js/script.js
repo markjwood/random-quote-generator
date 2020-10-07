@@ -114,9 +114,9 @@ function randomNumber(min, max) {
  * Generates a random rgb color code.
  */
 function randomColor() {
-  let r = randomNumber(0, 255);
-  let g = randomNumber(0, 255);
-  let b = randomNumber(0, 255);
+  const r = randomNumber(0, 255);
+  const g = randomNumber(0, 255);
+  const b = randomNumber(0, 255);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
@@ -126,7 +126,7 @@ function randomColor() {
 ***/
 
 function getRandomQuote(array) {
-  let number = randomNumber(0, array.length);
+  const number = randomNumber(0, array.length);
   return array[number];
 }
 
@@ -134,7 +134,7 @@ function getRandomQuote(array) {
  * `printQuote` function
 ***/
 function printQuote() {
-  let randomQuote = getRandomQuote(quotes);
+  const randomQuote = getRandomQuote(quotes);
 
   let htmlQuote = `<p class="quote">${randomQuote.quote}</p>`;
   htmlQuote += `<p class="source">${randomQuote.source}`;
