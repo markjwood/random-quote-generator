@@ -157,6 +157,12 @@ function printQuote() {
 
   // Change background to a random color
   document.querySelector('body').style.backgroundColor = randomColor();
+
+  /* Re-start interval timer.
+   * Prevents immediate refresh after clicking button.
+   */
+  clearInterval(interval);
+  interval = setInterval(printQuote, 20000);
 }
 
 // Refresh quote every 20 seconds
